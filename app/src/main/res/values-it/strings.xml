@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bluehound</string>
+    <string name="search">Ricerca</string>
+    <string name="settings">Impostazioni</string>
+    <string name="image_of_the_place">Immagine del posto</string>
+    <string name="place_title">Nome del Posto</string>
+    <string name="date">Data</string>
+    <string name="add_new_travel">Aggiungi un nuovo viaggio</string>
+    <string name="take_gps_position">Prendi la posizione GPS</string>
+    <string name="description">Descrizione</string>
+    <string name="take_a_picture">Scatta una foto</string>
+    <string name="image_captured">Foto scattata</string>
+    <string name="share">Condividi</string>
+    <string name="username">Username</string>
+</resources>

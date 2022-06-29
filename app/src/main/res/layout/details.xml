@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/place_image"
+                android:layout_width="match_parent"
+                android:layout_height="108dp"
+                android:background="@color/purple_500"
+                app:srcCompat="@drawable/ic_baseline_android_24"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/image_of_the_place" />
+
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/place_title"
+                android:layout_margin="10dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
+
+            <TextView
+                android:id="@+id/travel_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:layout_margin="10dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.Material3.LabelMedium"/>
+
+            <TextView
+                android:id="@+id/place_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description"
+                android:layout_margin="10dp"
+                android:textAppearance="@style/TextAppearance.Material3.LabelMedium"/>
+
+            <Button
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/share"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

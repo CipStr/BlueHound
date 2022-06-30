@@ -179,4 +179,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
     public CardItem getItemSelected(int position) {
         return cardItemList.get(position);
     }
+
+    public void deleteItem(int position){
+        this.cardItemList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
 }

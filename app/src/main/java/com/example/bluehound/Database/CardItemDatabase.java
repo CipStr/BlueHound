@@ -31,7 +31,7 @@ public abstract class CardItemDatabase extends RoomDatabase {
                 //If the db has not yet been created, the builder creates it.
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            CardItemDatabase.class, "travel_database")
+                            CardItemDatabase.class, "bluehound_database")
                             .build();
                 }
             }

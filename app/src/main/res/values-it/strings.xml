@@ -3,14 +3,18 @@
     <string name="app_name">Bluehound</string>
     <string name="search">Ricerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="image_of_the_place">Immagine del posto</string>
-    <string name="place_title">Nome del Posto</string>
+    <string name="image_of_the_device">Immagine del dispositivo</string>
+    <string name="device_name">Nome del Posto</string>
     <string name="date">Data</string>
-    <string name="add_new_travel">Aggiungi un nuovo viaggio</string>
+    <string name="add_new_device">Aggiungi un nuovo dispositivo</string>
     <string name="take_gps_position">Prendi la posizione GPS</string>
     <string name="description">Descrizione</string>
     <string name="take_a_picture">Scatta una foto</string>
     <string name="image_captured">Foto scattata</string>
     <string name="share">Condividi</string>
     <string name="username">Username</string>
+    <string name="device_id">ID dispositivo:</string>
+    <string name="status">Stato dispositivo</string>
+    <string name="currentlocation">Posizione corrente</string>
+    <string name="delete_device">Elimina dispositivo</string>
 </resources>

@@ -56,7 +56,7 @@ public class DetailsFragment extends Fragment {
             Utilities.setUpToolbar((AppCompatActivity) activity, "Details");
 
             placeTextView = view.findViewById(R.id.place_name);
-            descriptionTextView = view.findViewById(R.id.place_description);
+            descriptionTextView = view.findViewById(R.id.lastlocation);
             dateTextView = view.findViewById(R.id.travel_date);
             placeImageView = view.findViewById(R.id.place_image);
 
@@ -87,7 +87,7 @@ public class DetailsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, getText(R.string.place_title) + ": " +
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, getText(R.string.device_name) + ": " +
                             placeTextView.getText().toString() +"\n" + getText(R.string.date) + ": " +
                             dateTextView.getText().toString() +"\n" + getText(R.string.description) + ": " +
                             descriptionTextView.getText().toString());

@@ -22,23 +22,23 @@
                 app:layout_constraintGuide_percent="0.77" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/place_textinput"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                android:id="@+id/place_textinput"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/place_title"
-                    android:imeOptions="flagNoExtractUi"
-                    android:id="@+id/place_edittext"/>
+                    android:hint="@string/device_name"
+                    android:imeOptions="flagNoExtractUi" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
@@ -55,67 +55,67 @@
                 app:srcCompat="@drawable/ic_baseline_gps_fixed_24" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/date_textinput"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                android:id="@+id/date_textinput"
+                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/place_textinput"
-                app:layout_constraintEnd_toStartOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/place_textinput">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/date_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/date"
                     android:imeOptions="flagNoExtractUi"
-                    android:inputType="date"
-                    android:id="@+id/date_edittext"/>
+                    android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/description_textinput"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                android:id="@+id/description_textinput"
+                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date_textinput"
-                app:layout_constraintEnd_toStartOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/date_textinput">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/currentlocation_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/description"
-                    android:imeOptions="flagNoExtractUi"
-                    android:id="@+id/description_edittext"/>
+                    android:hint="@string/currentlocation"
+                    android:imeOptions="flagNoExtractUi" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/capture_button"
+                style="@style/ThemeOverlay.Material3.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/take_a_picture"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/description_textinput"
-                style="@style/ThemeOverlay.Material3.Button"/>
+                app:layout_constraintTop_toBottomOf="@id/description_textinput" />
 
             <ImageView
                 android:id="@+id/picture_displayed_imageview"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/ic_baseline_android_24"
                 android:background="@color/purple_500"
-                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/image_captured"
+                android:src="@drawable/ic_baseline_android_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/capture_button"
-                android:contentDescription="@string/image_captured" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/capture_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

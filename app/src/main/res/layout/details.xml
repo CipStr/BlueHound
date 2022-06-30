@@ -21,13 +21,13 @@
                 android:background="@color/purple_500"
                 app:srcCompat="@drawable/ic_baseline_android_24"
                 android:layout_margin="10dp"
-                android:contentDescription="@string/image_of_the_place" />
+                android:contentDescription="@string/image_of_the_device" />
 
             <TextView
                 android:id="@+id/place_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/place_title"
+                android:text="@string/device_name"
                 android:layout_margin="10dp"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
@@ -42,10 +42,10 @@
                 android:textAppearance="@style/TextAppearance.Material3.LabelMedium"/>
 
             <TextView
-                android:id="@+id/place_description"
+                android:id="@+id/lastlocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/description"
+                android:text="@string/currentlocation"
                 android:layout_margin="10dp"
                 android:textAppearance="@style/TextAppearance.Material3.LabelMedium"/>
 

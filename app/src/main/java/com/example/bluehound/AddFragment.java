@@ -37,6 +37,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -69,6 +70,7 @@ import java.util.Locale;
 
 public class AddFragment extends Fragment {
 
+    private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 23;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationCallback locationCallback;
     private LocationRequest locationRequest;
@@ -91,11 +93,12 @@ public class AddFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.add_travel, container, false);
+        return inflater.inflate(R.layout.add_device, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
         Activity activity = getActivity();
         if (activity != null) {
@@ -171,9 +174,9 @@ public class AddFragment extends Fragment {
                 }
             });
 
-            placeTIET = view.findViewById(R.id.place_edittext);
+            placeTIET = view.findViewById(R.id.name_edittext);
             TextInputEditText dateTIET = view.findViewById(R.id.date_edittext);
-            descriptionTIET = view.findViewById(R.id.description_edittext);
+            descriptionTIET = view.findViewById(R.id.currentlocation_edittext);
             view.findViewById(R.id.fab_add).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -230,7 +233,6 @@ public class AddFragment extends Fragment {
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
         contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg");
-
         Uri imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 contentValues);
 
@@ -253,7 +255,21 @@ public class AddFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        checkPermissionsForWriteExternalStorage();
+
     }
+
+    private void checkPermissionsForWriteExternalStorage() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_WRITE_EXTERNAL_STORAGE);
+            }
+        }
+    }
+
 
     /**
      *

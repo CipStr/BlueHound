@@ -22,8 +22,8 @@ public class CardViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     public CardViewHolder(@NonNull View itemView, OnItemListener listener) {
         super(itemView);
-        placeImageView = itemView.findViewById(R.id.place_imageview);
-        placeTextView = itemView.findViewById(R.id.place_textview);
+        placeImageView = itemView.findViewById(R.id.device_image);
+        placeTextView = itemView.findViewById(R.id.name_textview);
         dateTextView = itemView.findViewById(R.id.date_textview);
         itemListener = listener;
 

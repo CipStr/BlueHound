@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/layout/activity_settings.xml" value="0.358695652173913" />
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/layout/add_travel.xml" value="0.358695652173913" />
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/layout/card_layout.xml" value="0.358695652173913" />
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/layout/details.xml" value="0.358695652173913" />
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/layout/fab_add.xml" value="0.358695652173913" />
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/layout/home.xml" value="0.358695652173913" />
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/menu/delete.xml" value="0.365625" />
+        <entry key="..\:/Progetto_finale/Bluehound/app/src/main/res/menu/top_app_bar.xml" value="0.36666666666666664" />
         <entry key="..\:/Progetto_finale/Progetto/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.263" />
         <entry key="..\:/Progetto_finale/Progetto/app/src/main/res/layout-land/home.xml" value="0.31040564373897706" />
         <entry key="..\:/Progetto_finale/Progetto/app/src/main/res/layout-large/home.xml" value="0.27049180327868855" />

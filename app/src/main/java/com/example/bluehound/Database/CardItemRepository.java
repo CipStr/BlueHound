@@ -37,4 +37,22 @@ public class CardItemRepository {
             }
         });
     }
+    //delete card item by id
+    public void deleteCardItem(CardItem cardItem) {
+        CardItemDatabase.executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                cardItemDAO.deleteCardItem(cardItem);
+            }
+        });
+    }
+    //delete all card items
+    public void deleteAllCardItems() {
+        CardItemDatabase.executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                cardItemDAO.deleteAllCardItems();
+            }
+        });
+    }
 }

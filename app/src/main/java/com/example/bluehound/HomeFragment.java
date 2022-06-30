@@ -1,6 +1,8 @@
 package com.example.bluehound;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,10 +21,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bluehound.RecyclerView.CardAdapter;
 import com.example.bluehound.RecyclerView.OnItemListener;
+import com.example.bluehound.RecyclerView.SwipeCard;
+import com.example.bluehound.ViewModel.DeleteViewModel;
 import com.example.bluehound.ViewModel.ListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -32,6 +38,8 @@ public class HomeFragment extends Fragment implements OnItemListener {
     private static final String LOG_TAG = "HomeFragment";
 
     private CardAdapter adapter;
+
+    private DeleteViewModel deleteViewModel;
 
     private ListViewModel listViewModel;
 
@@ -89,6 +97,9 @@ public class HomeFragment extends Fragment implements OnItemListener {
         final OnItemListener listener = this;
         adapter = new CardAdapter(listener, activity);
         recyclerView.setAdapter(adapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeCard(adapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
     }
 
     @Override
@@ -141,5 +152,36 @@ public class HomeFragment extends Fragment implements OnItemListener {
             }
 
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==R.id.menu_delete){
+            deleteDevice();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteDevice(){
+       //create alert dialog and call deleteAllCardItems() method
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Delete all?");
+        builder.setMessage("Are you sure you want to delete all devices?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteViewModel = new ViewModelProvider(getActivity()).get(DeleteViewModel.class);
+                deleteViewModel.deleteAllCardItems();
+                //make toast to show that all devices have been deleted
+                Toast.makeText(getActivity(), "All devices have been deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }

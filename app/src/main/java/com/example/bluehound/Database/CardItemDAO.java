@@ -2,6 +2,7 @@ package com.example.bluehound.Database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -23,4 +24,10 @@ public interface CardItemDAO {
     @Query("SELECT * FROM item ORDER BY item_id DESC")
     LiveData<List<CardItem>> getCardItems();
 
+    //delete card item by id
+    @Delete
+    void deleteCardItem(CardItem cardItem);
+
+    @Query("DELETE FROM item")
+    void deleteAllCardItems();
 }

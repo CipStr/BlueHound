@@ -5,6 +5,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bluehound.CardItem;
@@ -17,18 +18,12 @@ import com.example.bluehound.RecyclerView.CardAdapter;
 public class DeleteViewModel extends AndroidViewModel {
     private final MutableLiveData<CardItem> itemSelected = new MutableLiveData<>();
     private final CardItemRepository repository;
+
     public DeleteViewModel(@NonNull Application application) {
         super(application);
         repository = new CardItemRepository(application);
     }
 
-
-    public MutableLiveData<CardItem> getItemSelected() {
-        return itemSelected;
-    }
-    public void setItemSelected(CardItem cardItem) {
-        itemSelected.setValue(cardItem);
-    }
     public void deleteCardItem(CardItem cardItem) {
         repository.deleteCardItem(cardItem);
     }
@@ -36,4 +31,11 @@ public class DeleteViewModel extends AndroidViewModel {
         repository.deleteAllCardItems();
     }
 
+    public void setItemSelected(CardItem itemSelected) {
+        this.itemSelected.setValue(itemSelected);
+    }
+
+    public LiveData<CardItem> getItemSelected() {
+        return itemSelected;
+    }
 }

@@ -1,9 +1,12 @@
 package com.example.bluehound.RecyclerView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -154,6 +157,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
 
         this.cardItemList = new ArrayList<>(filteredList);
         diffResult.dispatchUpdatesTo(this);
+        notifyDataSetChanged();
     }
 
     /**
@@ -177,12 +181,39 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
      * @return the item selected
      */
     public CardItem getItemSelected(int position) {
+        //log position of the item selected
+        Log.d("CardAdapter", "getItemSelected: " + position);
+        //log length of the list
+        Log.d("CardAdapter", "getItemSelected: " + cardItemList.size());
         return cardItemList.get(position);
     }
 
     public void deleteItem(int position){
+        //alert dialog to confirm the deletion of the item
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Delete device?");
+        builder.setMessage("Are you sure you want to delete the device?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                listener.deleteItem(position);
+                removeItem(position);
+                notifyItemRemoved(position);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                //refresh the list
+                notifyDataSetChanged();
+            }
+        });
+        builder.show();
+    }
+
+    private void removeItem(int position) {
         this.cardItemList.remove(position);
-        notifyItemRemoved(position);
     }
 
     public Activity getActivity() {

@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Class which represents every card item with its information (image, place, data, description)
+ * Class which represents every card item with its information (image, name, data, location)
  */
 @Entity(tableName = "item")
 public class CardItem {
@@ -18,7 +18,7 @@ public class CardItem {
     private final String imageResource;
     @ColumnInfo(name = "item_name")
     private final String placeName;
-    @ColumnInfo(name = "item_description")
+    @ColumnInfo(name = "item_location")
     private final String placeDescription;
     @ColumnInfo(name = "item_date")
     private final String date;

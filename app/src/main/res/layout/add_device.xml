@@ -22,7 +22,7 @@
                 app:layout_constraintGuide_percent="0.77" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/place_textinput"
+                android:id="@+id/location_textinput"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:backgroundTint="@color/white"
                 android:contentDescription="@string/take_gps_position"
                 android:minHeight="48dp"
-                app:layout_constraintBottom_toBottomOf="@id/place_textinput"
+                app:layout_constraintBottom_toBottomOf="@id/location_textinput"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="parent"
@@ -64,7 +64,7 @@
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/place_textinput">
+                app:layout_constraintTop_toBottomOf="@id/location_textinput">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/date_edittext"

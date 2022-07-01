@@ -105,12 +105,30 @@ public class HomeFragment extends Fragment implements OnItemListener {
     @Override
     public void onItemClick(int position) {
         Activity activity = getActivity();
+        //log the position of the item clicked
+        Log.i(LOG_TAG, "Item clicked at position " + position);
+        //log list size of the list
+        Log.i(LOG_TAG, "List size is " + adapter.getItemCount());
         if (activity != null){
             Utilities.insertFragment((AppCompatActivity) activity, new DetailsFragment(),
                     DetailsFragment.class.getSimpleName());
 
             listViewModel.setItemSelected(adapter.getItemSelected(position));
         }
+    }
+
+    @Override
+    public void deleteItem(int position) {
+
+        deleteViewModel = new ViewModelProvider(getActivity()).get(DeleteViewModel.class);
+        deleteViewModel.setItemSelected(adapter.getItemSelected(position));
+        deleteViewModel.getItemSelected().observe(getActivity(), new Observer<CardItem>() {
+            @Override
+            public void onChanged(CardItem cardItem) {
+                deleteViewModel.deleteCardItem(cardItem);
+            }
+        });
+
     }
 
     @Override
@@ -162,8 +180,8 @@ public class HomeFragment extends Fragment implements OnItemListener {
         return super.onOptionsItemSelected(item);
     }
 
-    private void deleteDevice(){
-       //create alert dialog and call deleteAllCardItems() method
+    private void deleteDevice() {
+        //create alert dialog and call deleteAllCardItems() method
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Delete all?");
         builder.setMessage("Are you sure you want to delete all devices?");

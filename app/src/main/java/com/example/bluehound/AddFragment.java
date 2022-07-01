@@ -77,8 +77,8 @@ public class AddFragment extends Fragment {
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
-    TextInputEditText placeTIET;
-    TextInputEditText descriptionTIET;
+    TextInputEditText nameTIET;
+    TextInputEditText locationTIET;
 
     private boolean requestingLocationUpdates = false;
 
@@ -150,7 +150,7 @@ public class AddFragment extends Fragment {
                     });
             initializeLocation(activity);
 
-            Utilities.setUpToolbar((AppCompatActivity) activity, "Add Travel");
+            Utilities.setUpToolbar((AppCompatActivity) activity, "Add Device");
 
             view.findViewById(R.id.capture_button).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -174,9 +174,9 @@ public class AddFragment extends Fragment {
                 }
             });
 
-            placeTIET = view.findViewById(R.id.name_edittext);
+            nameTIET = view.findViewById(R.id.name_edittext);
             TextInputEditText dateTIET = view.findViewById(R.id.date_edittext);
-            descriptionTIET = view.findViewById(R.id.currentlocation_edittext);
+            locationTIET = view.findViewById(R.id.currentlocation_edittext);
             view.findViewById(R.id.fab_add).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -190,11 +190,11 @@ public class AddFragment extends Fragment {
                         } else {
                             imageUriString = "ic_baseline_android_24";
                         }
-                        if (placeTIET.getText() != null && descriptionTIET.getText() != null
+                        if (nameTIET.getText() != null && locationTIET.getText() != null
                                 && dateTIET.getText() != null) {
 
                             addViewModel.addCardItem(new CardItem(imageUriString,
-                                    placeTIET.getText().toString(), descriptionTIET.getText().toString(),
+                                    nameTIET.getText().toString(), locationTIET.getText().toString(),
                                     dateTIET.getText().toString()));
 
                             addViewModel.setImageBitmap(null);
@@ -387,12 +387,10 @@ public class AddFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            placeTIET.setText(response.get("name").toString());
-                            descriptionTIET.setText(response.get("display_name").toString());
+                            locationTIET.setText(response.get("display_name").toString());
 
                             unregisterNetworkCallback();
                         } catch (JSONException e) {
-                            placeTIET.setText("/");
                             e.printStackTrace();
                         }
                     }

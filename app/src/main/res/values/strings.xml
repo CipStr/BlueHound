@@ -14,6 +14,6 @@
     <string name="username">Username</string>
     <string name="device_id">Device ID:</string>
     <string name="status">Device status:</string>
-    <string name="currentlocation">Current location</string>
-    <string name="delete_device">Delete device</string>
+    <string name="currentlocation">Last location</string>
+    <string name="delete_device">Delete devices</string>
 </resources>

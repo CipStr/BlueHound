@@ -9,55 +9,82 @@
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/cardview_default_radius"
     app:strokeWidth="1dp"
+    app:cardElevation="10dp"
     app:strokeColor="@color/material_on_surface_stroke"
     >
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/delete_device"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="133dp">
 
         <ImageView
             android:id="@+id/device_image"
-            android:layout_width="match_parent"
-            android:layout_height="108dp"
+            android:layout_width="208dp"
+            android:layout_height="192dp"
+            android:layout_marginEnd="3dp"
             android:background="@color/purple_500"
             android:contentDescription="@string/image_of_the_device"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_android_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/status_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-        <TextView
-            android:id="@+id/name_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/device_name"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-        <TextView
-            android:id="@+id/date_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/date"
-            android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
-
-        <TextView
-            android:id="@+id/id_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:text="@string/device_id"
-            android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
 
         <TextView
             android:id="@+id/status_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="76dp"
             android:text="@string/status"
-            android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/device_image"
+            app:layout_constraintTop_toBottomOf="@+id/date_textview" />
+
+        <TextView
+            android:id="@+id/id_textview"
+            android:layout_width="350dp"
+            android:layout_height="29dp"
+            android:layout_margin="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/device_id"
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            app:layout_constraintBottom_toTopOf="@+id/date_textview"
+            app:layout_constraintStart_toEndOf="@+id/device_image"
+            app:layout_constraintTop_toBottomOf="@+id/name_textview" />
+
+        <TextView
+            android:id="@+id/date_textview"
+            android:layout_width="155dp"
+            android:layout_height="23dp"
+            android:layout_margin="3dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="75dp"
+            android:text="@string/date"
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            app:layout_constraintBottom_toTopOf="@+id/status_textview"
+            app:layout_constraintStart_toEndOf="@+id/device_image"
+            app:layout_constraintTop_toBottomOf="@+id/id_textview" />
+
+        <TextView
+            android:id="@+id/name_textview"
+            android:layout_width="159dp"
+            android:layout_height="30dp"
+            android:layout_margin="3dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="13dp"
+            android:text="@string/device_name"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:layout_constraintBottom_toTopOf="@+id/id_textview"
+            app:layout_constraintStart_toEndOf="@+id/device_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </com.google.android.material.card.MaterialCardView>

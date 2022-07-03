@@ -40,9 +40,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.bluehound.SettingActivity"/>
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAtp6L_edkun78j26wJ932WvVXpbO1BU7c"/>
     </application>
 
 </manifest>

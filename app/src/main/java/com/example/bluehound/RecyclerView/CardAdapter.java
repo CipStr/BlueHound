@@ -85,6 +85,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
 
         holder.placeTextView.setText(currentCardItem.getPlaceName());
         holder.dateTextView.setText(currentCardItem.getDate());
+        holder.locationTextView.setText(currentCardItem.getShortAddress());
     }
 
     @Override

@@ -117,8 +117,8 @@ public class DetailsFragment extends Fragment {
             map.setBuiltInZoomControls(true);
             map.setMultiTouchControls(true);
             IMapController mapController = map.getController();
-            mapController.setZoom(9.5);
-            GeoPoint startPoint = new GeoPoint(48.8583, 2.2944);
+            mapController.setZoom(16.5);
+            GeoPoint startPoint = listViewModel.getItemSelected().getValue().getGeoPoint();
             mapController.setCenter(startPoint);
             view.findViewById(R.id.share_button).setOnClickListener(new View.OnClickListener() {
                 @Override

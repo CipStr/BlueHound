@@ -1,8 +1,12 @@
 package com.example.bluehound;
 
+import android.util.Log;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import org.osmdroid.util.GeoPoint;
 
 /**
  * Class which represents every card item with its information (image, name, data, location)
@@ -52,5 +56,22 @@ public class CardItem {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getShortAddress() {
+        return "Last location:\n"+placeDescription.substring(0, placeDescription.indexOf(","));
+    }
+
+    public GeoPoint getGeoPoint() {
+        //get the coordinates from the description
+        String[] coordinates = this.placeDescription.split( " coordinates:" );
+        //check if the coordinates are valid
+        if(coordinates.length != 2) {
+            return new GeoPoint(44.148021238440485, 12.23538187241765);
+        }
+        String[] latLng = coordinates[1].split( "," );
+        double lat = Double.parseDouble( latLng[0] );
+        double lng = Double.parseDouble( latLng[1] );
+        return new GeoPoint( lat, lng );
     }
 }

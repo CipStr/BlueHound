@@ -23,6 +23,7 @@ public class CardViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     ImageView placeImageView;
     TextView placeTextView;
     TextView dateTextView;
+    TextView locationTextView;
 
     private final OnItemListener itemListener;
 
@@ -32,6 +33,7 @@ public class CardViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         placeTextView = itemView.findViewById(R.id.name_textview);
         dateTextView = itemView.findViewById(R.id.date_textview);
         itemListener = listener;
+        locationTextView = itemView.findViewById(R.id.location_textview);
 
         itemView.setOnClickListener(this);
     }

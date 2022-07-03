@@ -387,7 +387,7 @@ public class AddFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            locationTIET.setText(response.get("display_name").toString());
+                            locationTIET.setText(response.getString("display_name")+" coordinates:"+latitude+","+longitude);
 
                             unregisterNetworkCallback();
                         } catch (JSONException e) {

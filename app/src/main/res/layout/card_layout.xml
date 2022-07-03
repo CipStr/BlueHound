@@ -7,7 +7,7 @@
     android:id="@+id/single_card"
     android:layout_margin="16dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="@dimen/cardview_default_radius"
+    app:cardCornerRadius="12dp"
     app:strokeWidth="1dp"
     app:cardElevation="10dp"
     app:strokeColor="@color/material_on_surface_stroke"
@@ -17,17 +17,27 @@
         android:layout_width="match_parent"
         android:layout_height="133dp">
 
+        <TextView
+            android:id="@+id/location_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/currentlocation"
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            app:layout_constraintStart_toEndOf="@+id/device_image"
+            app:layout_constraintTop_toBottomOf="@+id/date_textview" />
+
         <ImageView
             android:id="@+id/device_image"
-            android:layout_width="208dp"
-            android:layout_height="192dp"
-            android:layout_marginEnd="3dp"
+            android:layout_width="152dp"
+            android:layout_height="132dp"
+            android:layout_marginTop="1dp"
             android:background="@color/purple_500"
             android:contentDescription="@string/image_of_the_device"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_android_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/status_textview"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
@@ -36,52 +46,48 @@
             android:id="@+id/status_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="76dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="15dp"
             android:text="@string/status"
             android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/device_image"
-            app:layout_constraintTop_toBottomOf="@+id/date_textview" />
-
-        <TextView
-            android:id="@+id/id_textview"
-            android:layout_width="350dp"
-            android:layout_height="29dp"
-            android:layout_margin="3dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/device_id"
-            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
-            app:layout_constraintBottom_toTopOf="@+id/date_textview"
-            app:layout_constraintStart_toEndOf="@+id/device_image"
-            app:layout_constraintTop_toBottomOf="@+id/name_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/location_textview" />
 
         <TextView
             android:id="@+id/date_textview"
             android:layout_width="155dp"
-            android:layout_height="23dp"
-            android:layout_margin="3dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="12dp"
             android:text="@string/date"
             android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
-            app:layout_constraintBottom_toTopOf="@+id/status_textview"
+            app:layout_constraintBottom_toTopOf="@+id/location_textview"
             app:layout_constraintStart_toEndOf="@+id/device_image"
-            app:layout_constraintTop_toBottomOf="@+id/id_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/name_textview" />
 
         <TextView
             android:id="@+id/name_textview"
             android:layout_width="159dp"
-            android:layout_height="30dp"
-            android:layout_margin="3dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="13dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/device_name"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-            app:layout_constraintBottom_toTopOf="@+id/id_textview"
+            app:layout_constraintBottom_toTopOf="@+id/date_textview"
+            app:layout_constraintStart_toEndOf="@+id/device_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/device_image"
             app:layout_constraintTop_toTopOf="parent" />
 

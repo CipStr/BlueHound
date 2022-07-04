@@ -15,10 +15,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.osmdroid.util.GeoPoint;
+
 import java.io.InputStream;
 
 public class Utilities {
 
+    private static GeoPoint location;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     static void insertFragment(AppCompatActivity activity, Fragment fragment, String tag) {
@@ -83,5 +86,12 @@ public class Utilities {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void setLocation(GeoPoint geoPoint) {
+        location = geoPoint;
+    }
+    public static GeoPoint getLocation() {
+        return location;
     }
 }

@@ -60,6 +60,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.osmdroid.util.GeoPoint;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -388,7 +389,8 @@ public class AddFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         try {
                             locationTIET.setText(response.getString("display_name")+" coordinates:"+latitude+","+longitude);
-
+                            Utilities.setLocation(new GeoPoint(Double.parseDouble(latitude),
+                                    Double.parseDouble(longitude)));
                             unregisterNetworkCallback();
                         } catch (JSONException e) {
                             e.printStackTrace();

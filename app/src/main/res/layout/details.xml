@@ -1,65 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/track_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/track"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastlocation" />
+
+    <ImageView
+        android:id="@+id/place_image"
+        android:layout_width="223dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="39dp"
+        android:background="@color/purple_500"
+        android:contentDescription="@string/image_of_the_device"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_android_24" />
+
+    <TextView
+        android:id="@+id/place_name"
+        android:layout_width="160dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/device_name"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        app:layout_constraintStart_toEndOf="@+id/place_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/travel_date"
+        android:layout_width="158dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="19dp"
+        android:text="@string/date"
+        android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+        app:layout_constraintStart_toEndOf="@+id/place_image"
+        app:layout_constraintTop_toBottomOf="@+id/place_name" />
+
+    <TextView
+        android:id="@+id/lastlocation"
+        android:layout_width="380dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="@string/currentlocation"
+        android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/place_image" />
+
+    <Button
+        android:id="@+id/share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="13dp"
+        android:text="@string/share"
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastlocation" />
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/map"
+
+        android:layout_width="273dp"
+        android:layout_height="302dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="77dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/track_button" />
 
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/place_image"
-                android:layout_width="match_parent"
-                android:layout_height="108dp"
-                android:layout_margin="10dp"
-                android:background="@color/purple_500"
-                android:contentDescription="@string/image_of_the_device"
-                app:srcCompat="@drawable/ic_baseline_android_24" />
-
-            <TextView
-                android:id="@+id/place_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/device_name"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
-
-            <TextView
-                android:id="@+id/travel_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/date"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
-
-            <TextView
-                android:id="@+id/lastlocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/currentlocation"
-                android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
-
-            <Button
-                android:id="@+id/share_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_margin="10dp"
-                android:text="@string/share" />
-
-            <org.osmdroid.views.MapView android:id="@+id/map"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

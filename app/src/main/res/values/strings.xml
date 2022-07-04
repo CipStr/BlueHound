@@ -16,4 +16,6 @@
     <string name="status">Device status:</string>
     <string name="currentlocation">Last location</string>
     <string name="delete_device">Delete devices</string>
+    <string name="track">track</string>
+    <string name="home">Home</string>
 </resources>

@@ -20,5 +20,4 @@
         android:title="@string/settings"
         app:showAsAction="never"
         android:contentDescription="@string/settings"/>
-
 </menu>

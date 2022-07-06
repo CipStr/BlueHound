@@ -20,4 +20,24 @@
         android:title="@string/settings"
         app:showAsAction="never"
         android:contentDescription="@string/settings"/>
+    <item
+        android:id="@+id/enableBluetooth"
+        android:icon="@drawable/ic_baseline_bluetooth_connected_24"
+        android:title="@string/enable"
+        app:showAsAction="never"
+        android:contentDescription="@string/settings"/>
+
+    <item
+        android:id="@+id/visibleBluetooth"
+        android:icon="@drawable/ic_baseline_bluetooth_searching_24"
+        android:title="@string/visible"
+        app:showAsAction="never"
+        android:contentDescription="@string/settings"/>
+    <item
+        android:id="@+id/scanBluetooth"
+        android:icon="@drawable/ic_baseline_bluetooth_searching_24"
+        android:title="@string/visible"
+        app:showAsAction="ifRoom"
+        android:contentDescription="@string/settings"/>
+
 </menu>

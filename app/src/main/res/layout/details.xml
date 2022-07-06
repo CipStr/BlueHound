@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/track"
+        app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastlocation" />
 
@@ -53,12 +54,15 @@
 
     <TextView
         android:id="@+id/lastlocation"
-        android:layout_width="380dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="15dp"
+        android:layout_width="375dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="13dp"
+        android:layout_marginEnd="24dp"
+        android:scrollbars="vertical"
         android:text="@string/currentlocation"
         android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/place_image" />
 
@@ -78,16 +82,30 @@
     <org.osmdroid.views.MapView
         android:id="@+id/map"
 
-        android:layout_width="273dp"
-        android:layout_height="302dp"
+        android:layout_width="290dp"
+        android:layout_height="207dp"
         android:layout_marginStart="69dp"
         android:layout_marginTop="13dp"
         android:layout_marginEnd="69dp"
-        android:layout_marginBottom="77dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/track_button" />
+
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/edit"
+        app:layout_constraintBottom_toTopOf="@+id/lastlocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/place_image"
+        app:layout_constraintTop_toBottomOf="@+id/travel_date" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

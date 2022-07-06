@@ -1,6 +1,7 @@
 package com.example.bluehound;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothDevice;
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,11 +19,15 @@ import androidx.fragment.app.FragmentTransaction;
 import org.osmdroid.util.GeoPoint;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class Utilities {
 
     private static GeoPoint location;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static boolean replaceFlag = false;
+    private static int replaceID = 0;
+    private static ArrayList<BluetoothDevice> pairDevices;
 
     static void insertFragment(AppCompatActivity activity, Fragment fragment, String tag) {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
@@ -93,5 +98,26 @@ public class Utilities {
     }
     public static GeoPoint getLocation() {
         return location;
+    }
+
+    public static void setReplaceID(int id) {
+        replaceID = id;
+    }
+
+    public static int getReplaceID() {
+        return replaceID;
+    }
+
+    public static void setReplaceFlag(boolean b) {
+        replaceFlag = b;
+    }
+
+
+    public static boolean getReplaceFlag() {
+        return replaceFlag;
+    }
+
+    public static void setPairedDevices(ArrayList<BluetoothDevice> bluetoothDevices) {
+        pairDevices = bluetoothDevices;
     }
 }

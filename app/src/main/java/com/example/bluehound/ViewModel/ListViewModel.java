@@ -1,6 +1,7 @@
 package com.example.bluehound.ViewModel;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.bluehound.CardItem;
 import com.example.bluehound.Database.CardItemRepository;
 
+import java.text.Annotation;
 import java.util.List;
 
 /**
@@ -38,5 +40,4 @@ public class ListViewModel extends AndroidViewModel {
     public void setItemSelected(CardItem cardItem) {
         itemSelected.setValue(cardItem);
     }
-
 }

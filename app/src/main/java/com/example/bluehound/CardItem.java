@@ -19,13 +19,13 @@ public class CardItem {
     private int id;
 
     @ColumnInfo(name = "item_image")
-    private final String imageResource;
+    private String imageResource;
     @ColumnInfo(name = "item_name")
-    private final String placeName;
+    private String placeName;
     @ColumnInfo(name = "item_location")
-    private final String placeDescription;
+    private String placeDescription;
     @ColumnInfo(name = "item_date")
-    private final String date;
+    private String date;
 
     public CardItem(String imageResource, String placeName, String placeDescription, String date) {
         this.imageResource = imageResource;
@@ -59,7 +59,7 @@ public class CardItem {
     }
 
     public String getShortAddress() {
-        return "Last location:\n"+placeDescription.substring(0, placeDescription.indexOf(","));
+        return "Last location:\n"+placeDescription.split(",")[0];
     }
 
     public GeoPoint getGeoPoint() {

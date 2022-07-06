@@ -144,6 +144,14 @@ public class DetailsFragment extends Fragment {
                     Utilities.insertFragment((AppCompatActivity) activity, new TrackFragment(), TrackFragment.class.getSimpleName());
                 }
             });
+            view.findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Utilities.setReplaceID(listViewModel.getItemSelected().getValue().getId());
+                    Utilities.setReplaceFlag(true);
+                    Utilities.insertFragment((AppCompatActivity) activity, new AddFragment(), AddFragment.class.getSimpleName());
+                }
+            });
         }
     }
 
@@ -157,6 +165,8 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        //update data
+
         //this will refresh the osmdroid configuration on resuming.
         //if you make changes to the configuration, use
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -204,6 +214,7 @@ public class DetailsFragment extends Fragment {
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }
+
 
 
 }

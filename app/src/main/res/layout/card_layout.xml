@@ -85,8 +85,7 @@
             android:layout_width="3dp"
             android:layout_height="match_parent"
             android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorSecondaryVariant"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/device_image"
             app:layout_constraintTop_toTopOf="parent" />

@@ -4,7 +4,7 @@
     <string name="search">Ricerca</string>
     <string name="settings">Impostazioni</string>
     <string name="image_of_the_device">Immagine del dispositivo</string>
-    <string name="device_name">Nome del Posto</string>
+    <string name="device_name">Nome del dispositivo</string>
     <string name="date">Data</string>
     <string name="add_new_device">Aggiungi un nuovo dispositivo</string>
     <string name="take_gps_position">Prendi la posizione GPS</string>
@@ -16,5 +16,10 @@
     <string name="device_id">ID dispositivo:</string>
     <string name="status">Stato dispositivo</string>
     <string name="currentlocation">Posizione corrente</string>
-    <string name="delete_device">Elimina dispositivo</string>
+    <string name="delete_device">Elimina dispositivi</string>
+    <string name="track">traccia</string>
+    <string name="home">Home</string>
+    <string name="edit">Edita</string>
+    <string name="enable">Accendi BLT</string>
+    <string name="visible">Visibile BLT</string>
 </resources>

@@ -39,6 +39,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
@@ -50,6 +52,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bluehound.ViewModel.AddViewModel;
+import com.example.bluehound.ViewModel.DeleteViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -89,6 +92,7 @@ public class AddFragment extends Fragment {
     private ConnectivityManager.NetworkCallback networkCallback;
     private boolean isNetworkConnected = false;
     private Snackbar snackbar;
+    private DeleteViewModel deleteViewModel;
 
     @Nullable
     @Override
@@ -193,14 +197,23 @@ public class AddFragment extends Fragment {
                         }
                         if (nameTIET.getText() != null && locationTIET.getText() != null
                                 && dateTIET.getText() != null) {
-
-                            addViewModel.addCardItem(new CardItem(imageUriString,
-                                    nameTIET.getText().toString(), locationTIET.getText().toString(),
-                                    dateTIET.getText().toString()));
-
-                            addViewModel.setImageBitmap(null);
-
-                            ((AppCompatActivity) activity).getSupportFragmentManager().popBackStack();
+                            if(Utilities.getReplaceFlag()){
+                                CardItem card = new CardItem(imageUriString,
+                                        nameTIET.getText().toString(), locationTIET.getText().toString(),
+                                        dateTIET.getText().toString());
+                                card.setId(Utilities.getReplaceID());
+                                addViewModel.addCardItem(card);
+                                Utilities.setReplaceFlag(false);
+                                addViewModel.setImageBitmap(null);
+                                Utilities.insertFragment((AppCompatActivity) activity, new HomeFragment(), HomeFragment.class.getSimpleName());
+                            }
+                            else{
+                                addViewModel.addCardItem(new CardItem(imageUriString,
+                                        nameTIET.getText().toString(), locationTIET.getText().toString(),
+                                        dateTIET.getText().toString()));
+                                addViewModel.setImageBitmap(null);
+                                ((AppCompatActivity) activity).getSupportFragmentManager().popBackStack();
+                            }
                         }
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -389,8 +402,6 @@ public class AddFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         try {
                             locationTIET.setText(response.getString("display_name")+" coordinates:"+latitude+","+longitude);
-                            Utilities.setLocation(new GeoPoint(Double.parseDouble(latitude),
-                                    Double.parseDouble(longitude)));
                             unregisterNetworkCallback();
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -11,4 +11,6 @@
     <color name="colorPrimaryVariant">#718792</color>
     <color name="colorSecondary">#0277bc</color>
     <color name="colorSecondaryVariant">#58a5ef</color>
+    <color name="background">#f5f5f5</color>
+    <color name="background_dark">#FF000000</color>
 </resources>

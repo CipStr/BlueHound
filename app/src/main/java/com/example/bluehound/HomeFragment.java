@@ -65,7 +65,6 @@ public class HomeFragment extends Fragment implements OnItemListener {
             Utilities.setUpToolbar((AppCompatActivity) activity, getString(R.string.app_name));
 
             setRecyclerView(activity);
-
             listViewModel = new ViewModelProvider(activity).get(ListViewModel.class);
             listViewModel.getCardItems().observe(activity, new Observer<List<CardItem>>() {
                 @Override

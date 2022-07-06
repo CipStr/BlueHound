@@ -16,7 +16,7 @@ import java.util.List;
 public interface CardItemDAO {
 
     //The selected OnConflictStrategy ignores a new CardItem if it's already in the list
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addCardItem(CardItem cardItem);
 
     // @Transaction: anything inside the method runs in a single transaction.
@@ -30,4 +30,5 @@ public interface CardItemDAO {
 
     @Query("DELETE FROM item")
     void deleteAllCardItems();
+
 }

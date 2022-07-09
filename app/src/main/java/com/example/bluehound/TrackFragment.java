@@ -2,6 +2,8 @@ package com.example.bluehound;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -9,6 +11,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -23,6 +26,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -53,6 +58,12 @@ public class TrackFragment extends Fragment {
     private MapView map = null;
     private RoadManager roadManager = null;
     private ListViewModel listViewModel;
+    private GeoPoint oldLocation = null;
+    private NotificationManagerCompat notificationManager;
+    private NotificationCompat.Builder builderProgress;
+    private int PROGRESS_MAX = 100;
+    private int PROGRESS_CURRENT = 0;
+    private double totalDistance = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +72,14 @@ public class TrackFragment extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Configuration.getInstance().setUserAgentValue("MyOwnUserAgent/1.0");
-
+        createNotificationChannel();
+        notificationManager = NotificationManagerCompat.from(this.getActivity());
+        builderProgress = new NotificationCompat.Builder(this.getContext(), "1")
+                .setSmallIcon(R.drawable.ic_dog_running)
+                .setContentTitle("Woof Woof")
+                .setContentText("Taking your dog out for a walk?")
+                .setSubText("Here's the progress you made!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
     }
 
     @Nullable
@@ -98,7 +116,10 @@ public class TrackFragment extends Fragment {
         GeoPoint startPoint = Utilities.getLocation();
         IMapController mapController = map.getController();
         mapController.setZoom(16.5);
-        mapController.setCenter(startPoint);
+        //if center is already set, don't set it again
+        if (oldLocation == null) {
+            mapController.setCenter(startPoint);
+        }
         Marker startMarker = new Marker(map);
         //manage null pointer exception
         if (startPoint == null) {
@@ -112,6 +133,12 @@ public class TrackFragment extends Fragment {
         ArrayList<GeoPoint> waypoints = new ArrayList<GeoPoint>();
         waypoints.add(startPoint);
         GeoPoint endPoint = listViewModel.getItemSelected().getValue().getGeoPoint();
+        //if function is called first time save total distance as distance between start and end point
+        if (oldLocation == null) {
+            float[] results = new float[1];
+            Location.distanceBetween(startPoint.getLatitude(), startPoint.getLongitude(), endPoint.getLatitude(), endPoint.getLongitude(),results);
+            totalDistance = results[0];
+        }
         waypoints.add(endPoint);
         Road road = roadManager.getRoad(waypoints);
         Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
@@ -128,6 +155,19 @@ public class TrackFragment extends Fragment {
         }
         map.getOverlays().add(roadOverlay);
         map.getOverlays().add(startMarker);
+        oldLocation = startPoint;
+        //define current progress as distance from start to end
+        float[] progressToMap= new float[1];
+        Location.distanceBetween(startPoint.getLatitude(), startPoint.getLongitude(), endPoint.getLatitude(), endPoint.getLongitude(), progressToMap);
+        //map progress as a percentage of total distance
+        if(totalDistance <100){
+            PROGRESS_CURRENT = 100;
+        }
+        else {
+            PROGRESS_CURRENT = (int) ((PROGRESS_MAX * (totalDistance - progressToMap[0])) / totalDistance);
+        }
+        builderProgress.setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false);
+        notificationManager.notify(1, builderProgress.build());
     }
 
     @Override
@@ -162,7 +202,9 @@ public class TrackFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
+        menu.findItem(R.id.scanBluetooth).setVisible(false);
+        menu.findItem(R.id.enableBluetooth).setVisible(false);
+        menu.findItem(R.id.visibleBluetooth).setVisible(false);
         menu.findItem(R.id.app_bar_search).setVisible(false);
     }
 
@@ -189,5 +231,20 @@ public class TrackFragment extends Fragment {
     public void updateMap() {
         map.getOverlays().clear();
         setupMap();
+    }
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Notification Channel";
+            String description = "Notification Channel";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("1", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = this.getActivity().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

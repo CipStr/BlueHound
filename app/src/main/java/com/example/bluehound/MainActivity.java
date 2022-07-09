@@ -43,10 +43,6 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LOGTAG = "MainActivity";
-    ;
-    private BluetoothAdapter BA;
-    private Set<BluetoothDevice> pairedDevices;
     private AddViewModel addViewModel;
     int LOCATION_REFRESH_TIME = 5000; // 5 seconds to update
     int LOCATION_REFRESH_DISTANCE = 0; // 0 meters to update
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             Utilities.insertFragment(this, new HomeFragment(), HomeFragment.class.getSimpleName());
 
         addViewModel = new ViewModelProvider(this).get(AddViewModel.class);
-        BA = BluetoothAdapter.getDefaultAdapter();
+
     }
 
     /**
@@ -116,33 +112,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SettingActivity.class);
             this.startActivity(intent);
             return true;
-        }
-        if (item.getItemId() == R.id.enableBluetooth) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-            }
-            BA.enable();
-        }
-        if (item.getItemId() == R.id.visibleBluetooth) {
-            BA.startDiscovery();
-            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-            startActivity(discoverableIntent);
-            //save list of paired devices in Utilities
-            pairedDevices = BA.getBondedDevices();
-            Utilities.setPairedDevices(new ArrayList<>(pairedDevices));
-        }
-        if(item.getItemId() == R.id.scanBluetooth) {
-            pairedDevices = BA.getBondedDevices();
-            ArrayList<String> pairedDevicesArray = new ArrayList<>();
-            for (BluetoothDevice bt : pairedDevices) {
-                pairedDevicesArray.add(bt.getName());
-            }
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pairedDevicesArray);
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Paired Devices");
-            builder.setAdapter(adapter, null);
-            builder.show();
         }
         return false;
     }

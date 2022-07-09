@@ -21,4 +21,6 @@
     <string name="edit">Edit</string>
     <string name="enable">Enable</string>
     <string name="visible">Visible</string>
+    <string name="refresh">Refresh</string>
+    <string name="disable">Disable BLT</string>
 </resources>

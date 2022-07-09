@@ -46,13 +46,12 @@
             android:id="@+id/status_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/status"
             android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/device_image"
+            app:layout_constraintStart_toEndOf="@+id/imageStatus"
             app:layout_constraintTop_toBottomOf="@+id/location_textview" />
 
         <TextView
@@ -89,6 +88,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/device_image"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageStatus"
+            android:layout_width="27dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider2"
+            app:srcCompat="@drawable/ic_connected_24dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

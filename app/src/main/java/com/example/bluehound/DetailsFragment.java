@@ -40,6 +40,7 @@ import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Marker;
 
 import com.example.bluehound.ViewModel.ListViewModel;
 
@@ -53,6 +54,7 @@ public class DetailsFragment extends Fragment {
     private TextView placeTextView;
     private TextView descriptionTextView;
     private TextView dateTextView;
+    private TextView bltbonus;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private MapView map = null;
     private ImageView placeImageView;
@@ -94,6 +96,7 @@ public class DetailsFragment extends Fragment {
             descriptionTextView = view.findViewById(R.id.lastlocation);
             dateTextView = view.findViewById(R.id.travel_date);
             placeImageView = view.findViewById(R.id.place_image);
+            bltbonus= view.findViewById(R.id.bltBonus);
 
             ListViewModel listViewModel =
                     new ViewModelProvider((ViewModelStoreOwner) activity).get(ListViewModel.class);
@@ -103,6 +106,17 @@ public class DetailsFragment extends Fragment {
                     placeTextView.setText(cardItem.getPlaceName());
                     descriptionTextView.setText(cardItem.getPlaceDescription());
                     dateTextView.setText(cardItem.getDate());
+                    //foreach elem in Utilities.getConnectedDeviceInfo() add to bltbonus
+                    if(cardItem.getStatus()=="Connected") {
+                        int i = Utilities.getConnectedDeviceInfo().indexOf(cardItem.getPlaceName()) + 1;
+                        int limit = i + 4;
+                        for (; i < limit; i++) {
+                            bltbonus.setText(bltbonus.getText() + "\n" + Utilities.getConnectedDeviceInfo().get(i));
+                        }
+                    }
+                    else{
+                        bltbonus.setText("");
+                    }
                     String image_path = cardItem.getImageResource();
                     if (image_path.contains("ic_")){
                         Drawable drawable = ResourcesCompat.getDrawable(activity.getResources(),
@@ -123,6 +137,11 @@ public class DetailsFragment extends Fragment {
             mapController.setZoom(16.5);
             GeoPoint startPoint = listViewModel.getItemSelected().getValue().getGeoPoint();
             mapController.setCenter(startPoint);
+            Marker startMarker = new Marker(map);
+            startMarker.setPosition(startPoint);
+            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+            startMarker.setIcon(getResources().getDrawable(R.drawable.ic_dog_running));
+            map.getOverlays().add(startMarker);
             view.findViewById(R.id.share_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -158,7 +177,9 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
+        menu.findItem(R.id.scanBluetooth).setVisible(false);
+        menu.findItem(R.id.enableBluetooth).setVisible(false);
+        menu.findItem(R.id.visibleBluetooth).setVisible(false);
         menu.findItem(R.id.app_bar_search).setVisible(false);
     }
 

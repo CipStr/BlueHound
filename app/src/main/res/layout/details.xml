@@ -11,12 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|left"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/track"
         app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastlocation" />
+        app:layout_constraintTop_toBottomOf="@+id/lastlocation"
+        app:layout_constraintVertical_bias="0.425"/>
 
     <ImageView
         android:id="@+id/place_image"
@@ -32,12 +34,15 @@
 
     <TextView
         android:id="@+id/place_name"
-        android:layout_width="160dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="50dp"
         android:text="@string/device_name"
         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textSize="12sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/place_image"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,14 +59,15 @@
 
     <TextView
         android:id="@+id/lastlocation"
-        android:layout_width="375dp"
-        android:layout_height="99dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="340dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="13dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="32dp"
         android:scrollbars="vertical"
         android:text="@string/currentlocation"
         android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+        app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/place_image" />
@@ -72,12 +78,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|left"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/share"
         app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastlocation" />
+        app:layout_constraintTop_toBottomOf="@+id/lastlocation"
+        app:layout_constraintVertical_bias="0.425" />
 
     <org.osmdroid.views.MapView
         android:id="@+id/map"
@@ -90,20 +97,28 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/track_button" />
 
     <Button
         android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="30dp"
+        android:layout_width="78dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="19dp"
         android:text="@string/edit"
-        app:layout_constraintBottom_toTopOf="@+id/lastlocation"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/place_image"
+        app:layout_constraintTop_toBottomOf="@+id/bltBonus" />
+
+    <TextView
+        android:id="@+id/bltBonus"
+        android:layout_width="154dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:textSize="8sp"
+        app:layout_constrainedWidth="true"
         app:layout_constraintStart_toEndOf="@+id/place_image"
         app:layout_constraintTop_toBottomOf="@+id/travel_date" />
 

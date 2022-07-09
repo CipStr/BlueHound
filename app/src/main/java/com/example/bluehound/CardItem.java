@@ -26,12 +26,20 @@ public class CardItem {
     private String placeDescription;
     @ColumnInfo(name = "item_date")
     private String date;
+    @ColumnInfo(name = "item_status")
+    private String status;
 
     public CardItem(String imageResource, String placeName, String placeDescription, String date) {
         this.imageResource = imageResource;
         this.placeName = placeName;
         this.placeDescription = placeDescription;
         this.date = date;
+        if(Utilities.getConnectDeviceNames().contains(placeName)){
+            this.status = "Connected";
+        }
+        else {
+            this.status = "Not Connected";
+        }
     }
 
     public String getImageResource() {
@@ -59,7 +67,13 @@ public class CardItem {
     }
 
     public String getShortAddress() {
-        return "Last location:\n"+placeDescription.split(",")[0];
+        String[] address = placeDescription.split(",");
+        if(address.length > 1) {
+            return address[1];
+        }
+        else {
+            return address[0];
+        }
     }
 
     public GeoPoint getGeoPoint() {
@@ -73,5 +87,13 @@ public class CardItem {
         double lat = Double.parseDouble( latLng[0] );
         double lng = Double.parseDouble( latLng[1] );
         return new GeoPoint( lat, lng );
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

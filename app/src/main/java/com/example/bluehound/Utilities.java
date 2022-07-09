@@ -20,6 +20,7 @@ import org.osmdroid.util.GeoPoint;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Utilities {
 
@@ -28,7 +29,9 @@ public class Utilities {
     private static boolean replaceFlag = false;
     private static int replaceID = 0;
     private static ArrayList<BluetoothDevice> pairDevices;
-
+    private static ArrayList<String> pairDeviceNames;
+    private static ArrayList<String> connectDeviceNames= new ArrayList<>();
+    private static ArrayList<String> connectedDeviceInfo = new ArrayList<>();
     static void insertFragment(AppCompatActivity activity, Fragment fragment, String tag) {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
 
@@ -52,6 +55,9 @@ public class Utilities {
             activity.setSupportActionBar(toolbar);
         } else {
             activity.getSupportActionBar().setTitle(title);
+            activity.getSupportActionBar().setLogo(R.drawable.ic_dog_running);
+            activity.getSupportActionBar().setDisplayUseLogoEnabled(true);
+            activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
 
@@ -119,5 +125,29 @@ public class Utilities {
 
     public static void setPairedDevices(ArrayList<BluetoothDevice> bluetoothDevices) {
         pairDevices = bluetoothDevices;
+    }
+    public static void setPairedDeviceNames(ArrayList<String> bluetoothDeviceNames) {
+        pairDeviceNames = bluetoothDeviceNames;
+    }
+    public static ArrayList<String> getPairDeviceNames() {
+        return pairDeviceNames;
+    }
+
+    public static ArrayList<String> getConnectDeviceNames() {
+        return connectDeviceNames;
+    }
+
+    public static void setConnectDeviceNames(String connectDeviceNames) {
+        Utilities.connectDeviceNames.add(connectDeviceNames);
+    }
+
+    public static void resetConnectDeviceNames() {
+        Utilities.connectDeviceNames.clear();
+    }
+    public static ArrayList<String> getConnectedDeviceInfo() {
+        return connectedDeviceInfo;
+    }
+    public static void setConnectedDeviceInfo(String connectedDeviceInfo) {
+        Utilities.connectedDeviceInfo.add(connectedDeviceInfo);
     }
 }

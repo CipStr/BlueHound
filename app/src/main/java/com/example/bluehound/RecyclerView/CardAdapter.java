@@ -86,6 +86,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
         holder.placeTextView.setText(currentCardItem.getPlaceName());
         holder.dateTextView.setText(currentCardItem.getDate());
         holder.locationTextView.setText(currentCardItem.getShortAddress());
+        holder.statusTextView.setText(currentCardItem.getStatus());
+        if(currentCardItem.getStatus().equals("Not Connected")) {
+            holder.statusImageView.setImageResource(R.drawable.ic_disconnected_24dp);
+        }
     }
 
     @Override
@@ -172,7 +176,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
 
         this.cardItemList = new ArrayList<>(list);
         this.cardItemListNotFiltered = new ArrayList<>(list);
-
+        for (  CardItem cardItem : list) {
+            if(Utilities.getConnectDeviceNames().contains(cardItem.getPlaceName())){
+                cardItem.setStatus("Connected");
+            }
+            else{
+                cardItem.setStatus("Not Connected");
+            }
+        }
         diffResult.dispatchUpdatesTo(this);
     }
 
@@ -221,4 +232,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
         return activity;
     }
 
+    public void updateAllItems(){
+        for (  CardItem cardItem : cardItemList) {
+            if(Utilities.getConnectDeviceNames().contains(cardItem.getPlaceName())){
+                cardItem.setStatus("Connected");
+            }
+            else{
+                cardItem.setStatus("Not Connected");
+            }
+        }
+        notifyDataSetChanged();
+    }
 }

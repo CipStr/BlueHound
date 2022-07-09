@@ -21,5 +21,6 @@
     <string name="home">Home</string>
     <string name="edit">Edita</string>
     <string name="enable">Accendi BLT</string>
+    <string name="disable">Disabilita BLT</string>
     <string name="visible">Visibile BLT</string>
 </resources>

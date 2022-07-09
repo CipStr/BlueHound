@@ -28,7 +28,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -81,8 +84,8 @@ public class AddFragment extends Fragment {
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
-    TextInputEditText nameTIET;
-    TextInputEditText locationTIET;
+    private TextInputEditText nameTIET;
+    private TextInputEditText locationTIET;
 
     private boolean requestingLocationUpdates = false;
 
@@ -92,7 +95,8 @@ public class AddFragment extends Fragment {
     private ConnectivityManager.NetworkCallback networkCallback;
     private boolean isNetworkConnected = false;
     private Snackbar snackbar;
-    private DeleteViewModel deleteViewModel;
+
+    private Spinner spinner;
 
     @Nullable
     @Override
@@ -182,6 +186,25 @@ public class AddFragment extends Fragment {
             nameTIET = view.findViewById(R.id.name_edittext);
             TextInputEditText dateTIET = view.findViewById(R.id.date_edittext);
             locationTIET = view.findViewById(R.id.currentlocation_edittext);
+            spinner = view.findViewById(R.id.devices_spinner);
+
+            //handle if spinner is empty
+
+            if(Utilities.getPairDeviceNames()!=null) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, Utilities.getPairDeviceNames());
+                spinner.setAdapter(adapter);
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        String item = adapterView.getItemAtPosition(i).toString();
+                        nameTIET.setText(item);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+            }
             view.findViewById(R.id.fab_add).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -293,7 +316,9 @@ public class AddFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
+        menu.findItem(R.id.scanBluetooth).setVisible(false);
+        menu.findItem(R.id.enableBluetooth).setVisible(false);
+        menu.findItem(R.id.visibleBluetooth).setVisible(false);
         menu.findItem(R.id.app_bar_search).setVisible(false);
     }
 

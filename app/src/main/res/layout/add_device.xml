@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -19,14 +20,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.77" />
+                app:layout_constraintGuide_percent="0.58" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/location_textinput"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+                android:layout_width="191dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:layout_marginStart="16dp"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -38,19 +40,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/device_name"
-                    android:imeOptions="flagNoExtractUi" />
+                    android:imeOptions="flagNoExtractUi"
+                    android:textColorHint="#757575" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/devices_spinner"
+                android:layout_width="50dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="11dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintBottom_toTopOf="@+id/date_textinput"
+                app:layout_constraintStart_toEndOf="@+id/location_textinput"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
             <ImageButton
                 android:id="@+id/gps_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/colorSecondary"
                 android:contentDescription="@string/take_gps_position"
                 android:minHeight="48dp"
-                app:layout_constraintBottom_toBottomOf="@id/location_textinput"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintStart_toEndOf="@+id/devices_spinner"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_gps_fixed_24" />
 
@@ -72,7 +91,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/date"
                     android:imeOptions="flagNoExtractUi"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:textColorHint="#757575" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +112,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/currentlocation"
-                    android:imeOptions="flagNoExtractUi" />
+                    android:imeOptions="flagNoExtractUi"
+                    android:textColorHint="#757575" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

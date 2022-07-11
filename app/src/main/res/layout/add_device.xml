@@ -131,9 +131,9 @@
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
-                android:background="@color/purple_500"
+                android:background="@color/colorSecondary"
                 android:contentDescription="@string/image_captured"
-                android:src="@drawable/ic_baseline_android_24"
+                android:src="@drawable/ic_dog_running"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/capture_button" />

@@ -74,7 +74,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
         String imagePath = currentCardItem.getImageResource();
         if (imagePath.contains("ic_")){
             Drawable drawable = AppCompatResources.getDrawable(activity, activity.getResources()
-                    .getIdentifier(imagePath, "drawable", activity.getPackageName()));
+                    .getIdentifier(imagePath, "drawable", "com.example.bluehound"));
             holder.placeImageView.setImageDrawable(drawable);
         } else {
             Bitmap bitmap = Utilities.getImageBitmap(activity, Uri.parse(imagePath));

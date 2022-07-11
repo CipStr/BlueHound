@@ -115,10 +115,10 @@ public class TrackFragment extends Fragment {
         map.setMultiTouchControls(true);
         GeoPoint startPoint = Utilities.getLocation();
         IMapController mapController = map.getController();
-        mapController.setZoom(16.5);
         //if center is already set, don't set it again
         if (oldLocation == null) {
             mapController.setCenter(startPoint);
+            mapController.setZoom(16.5);
         }
         Marker startMarker = new Marker(map);
         //manage null pointer exception

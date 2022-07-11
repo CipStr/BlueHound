@@ -120,7 +120,7 @@ public class DetailsFragment extends Fragment {
                     String image_path = cardItem.getImageResource();
                     if (image_path.contains("ic_")){
                         Drawable drawable = ResourcesCompat.getDrawable(activity.getResources(),
-                                R.drawable.ic_baseline_android_24, activity.getTheme());
+                                R.drawable.ic_dog_running, activity.getTheme());
                         placeImageView.setImageDrawable(drawable);
                     } else {
                         Bitmap bitmap = Utilities.getImageBitmap(activity, Uri.parse(image_path));

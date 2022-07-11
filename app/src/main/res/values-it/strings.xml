@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Bluehound</string>
     <string name="search">Ricerca</string>
-    <string name="settings">Impostazioni</string>
     <string name="image_of_the_device">Immagine del dispositivo</string>
     <string name="device_name">Nome del dispositivo</string>
     <string name="date">Data</string>

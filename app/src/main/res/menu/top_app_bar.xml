@@ -15,12 +15,6 @@
         android:contentDescription="@string/search" />
 
     <item
-        android:id="@+id/app_bar_settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/settings"
-        app:showAsAction="never"
-        android:contentDescription="@string/settings"/>
-    <item
         android:id="@+id/enableBluetooth"
         android:icon="@drawable/ic_baseline_bluetooth_connected_24"
         android:title="@string/enable"

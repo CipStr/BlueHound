@@ -239,7 +239,7 @@ public class HomeFragment extends Fragment implements OnItemListener {
 
         });
         if(BA.isEnabled()){
-            menu.getItem(3).setTitle(R.string.disable);
+            menu.getItem(2).setTitle(R.string.disable);
         }
     }
 

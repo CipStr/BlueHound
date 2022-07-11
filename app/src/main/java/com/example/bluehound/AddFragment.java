@@ -216,7 +216,7 @@ public class AddFragment extends Fragment {
                         if (bitmap != null) {
                             imageUriString = String.valueOf(saveImage(bitmap, activity));
                         } else {
-                            imageUriString = "ic_baseline_android_24";
+                            imageUriString = "ic_dog_running";
                         }
                         if (nameTIET.getText() != null && locationTIET.getText() != null
                                 && dateTIET.getText() != null) {

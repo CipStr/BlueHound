@@ -71,6 +71,7 @@ public class HomeFragment extends Fragment implements OnItemListener {
             BluetoothProfile.STATE_CONNECTED,
             BluetoothProfile.STATE_CONNECTING};
     private NotificationCompat.Builder builderDelete;
+    private NotificationCompat.Builder builderVisible;
 
     /**
      * Called to have the fragment instantiate its user interface view.
@@ -196,10 +197,17 @@ public class HomeFragment extends Fragment implements OnItemListener {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 // Set the intent that will fire when the user taps the notification
                 .setAutoCancel(true);
-        builderDelete = new NotificationCompat.Builder(this.getContext(), "2")
+        builderDelete = new NotificationCompat.Builder(this.getContext(), "1")
                 .setSmallIcon(R.drawable.ic_dog_running)
                 .setContentTitle("Woof Woof")
                 .setContentText("I just deleted all items!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                // Set the intent that will fire when the user taps the notification
+                .setAutoCancel(true);
+        builderVisible = new NotificationCompat.Builder(this.getContext(), "1")
+                .setSmallIcon(R.drawable.ic_dog_running)
+                .setContentTitle("Woof Woof")
+                .setContentText("Your device is now visible to nearby BLT devices!")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 // Set the intent that will fire when the user taps the notification
                 .setAutoCancel(true);
@@ -248,7 +256,7 @@ public class HomeFragment extends Fragment implements OnItemListener {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_delete) {
             deleteDevice();
-            notificationManager.notify(2, builderDelete.build());
+            notificationManager.notify(1, builderDelete.build());
         }
         if (item.getItemId() == R.id.enableBluetooth) {
             if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -285,6 +293,7 @@ public class HomeFragment extends Fragment implements OnItemListener {
             builder.setTitle("Paired Devices");
             builder.setAdapter(adapter, null);
             builder.show();
+            notificationManager.notify(1, builderVisible.build());
         }
         if (item.getItemId() == R.id.refresh) {
             adapter.updateAllItems();
